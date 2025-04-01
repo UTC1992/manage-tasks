@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
+import { MatCardModule } from '@angular/material/card';
 import { RouterOutlet } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, MatCardModule, MatButtonModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'manage-tasks';
+  title = 'Todo List';
 }
