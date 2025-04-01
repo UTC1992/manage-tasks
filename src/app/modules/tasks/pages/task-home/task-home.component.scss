@@ -1,6 +1,8 @@
 .task-home-container {
   display: flex;
-  margin: 0;
-  padding: 0;
+  flex-direction: column;
+  row-gap: 1rem;
+  width: 100%;
+  padding: 1rem;
 }
 

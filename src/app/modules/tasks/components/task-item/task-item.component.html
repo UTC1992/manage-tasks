@@ -2,10 +2,12 @@
   <mat-card>
     <mat-card-content class="task-item-container">
       <div class="task-item-container__info">
-        <p class="task-item-container__title">title</p>
-        <p class="task-item-container__description">description</p>
-        <p class="task-item-container__body">status</p>
-        <p class="task-item-container__body">created_at</p>
+        <p class="task-item-container__title">{{ title }}</p>
+        <p class="task-item-container__description">{{ description }}</p>
+        <p class="task-item-container__body">
+          {{ completed ? "Completed" : "Pending" }}
+        </p>
+        <p class="task-item-container__body">{{ createdAt }}</p>
       </div>
       <div class="task-item-container__actions">
         <button mat-icon-button>
