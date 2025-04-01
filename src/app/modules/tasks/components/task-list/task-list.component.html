@@ -1,5 +1,9 @@
 <div class="task-list-container">
-  <app-task-item></app-task-item>
-  <app-task-item></app-task-item>
-  <app-task-item></app-task-item>
+  <app-task-item
+    *ngFor="let task of tasks"
+    [title]="task.title"
+    [description]="task.description"
+    [completed]="task.completed"
+    [createdAt]="task.createdAt"
+  ></app-task-item>
 </div>

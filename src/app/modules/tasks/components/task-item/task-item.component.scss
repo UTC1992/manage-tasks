@@ -16,18 +16,24 @@
 .task-item-container__info {
   display: flex;
   flex-direction: column;
-  row-gap: 0.1rem;
+  row-gap: 1rem;
 }
 
 .task-item-container__title {
   font-weight: 500;
-  font-size: medium;
+  font-size: x-large;
+  padding: 0%;
+  margin: 0%;
 }
 
 .task-item-container__description {
-  font-size: small;
+  font-size: medium;
+  padding: 0%;
+  margin: 0%;
 }
 
 .task-item-container__body {
-  font-size: small;
+  font-size: medium;
+  padding: 0%;
+  margin: 0%;
 }
