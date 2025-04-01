@@ -112,6 +112,13 @@
     ora "5.4.1"
     rxjs "7.8.1"
 
+"@angular/animations@^19.2.4":
+  version "19.2.4"
+  resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-19.2.4.tgz#2cfc6eb4677099b7171b4a2a356c301855b3e514"
+  integrity sha512-aoVgPGaB/M9OLGt9rMMYd8V9VNzVEFQHKpyuEl4FDBoeuIaFJcXFTfwY3+L5Ew6wcIErKH67rRYJsKv8r5Ou8w==
+  dependencies:
+    tslib "^2.3.0"
+
 "@angular/build@19.2.5":
   version "19.2.5"
   resolved "https://registry.yarnpkg.com/@angular/build/-/build-19.2.5.tgz#4d24147a268d5b850a31b2693a9c8cebc3d22c5e"
@@ -145,6 +152,14 @@
     watchpack "2.4.2"
   optionalDependencies:
     lmdb "3.2.6"
+
+"@angular/cdk@^19.2.7":
+  version "19.2.7"
+  resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-19.2.7.tgz#3f71a8b4dba9ea483303f18a0b98aeb48cf86203"
+  integrity sha512-+Dx1WGEWMO3OYDKr2w/Z5xOCsdjkRuG7Z18ve8eeBOHayRaC0KbYoXkvPxUiJo233CJWEzKQ/qF13C54GGWnng==
+  dependencies:
+    parse5 "^7.1.2"
+    tslib "^2.3.0"
 
 "@angular/cli@^19.2.5":
   version "19.2.5"
@@ -225,7 +240,7 @@
   dependencies:
     tslib "^2.3.0"
 
-"@angular/platform-browser@^19.2.0":
+"@angular/platform-browser@^19.2.4":
   version "19.2.4"
   resolved "https://registry.yarnpkg.com/@angular/platform-browser/-/platform-browser-19.2.4.tgz#2f22b429ee4cb32f10660c80b5a37221a6fd6007"
   integrity sha512-skP+Oq9hxh0hkLcs2bXgnt7Z+KKP5xZYzaHPEToLtPat6l6kSPjT0CJ+DE/8ce443hItAcCbn+JrKGC29nd2pw==
@@ -5372,7 +5387,7 @@ parse5-sax-parser@^7.0.0:
   dependencies:
     parse5 "^7.0.0"
 
-parse5@^7.0.0:
+parse5@^7.0.0, parse5@^7.1.2:
   version "7.2.1"
   resolved "https://registry.yarnpkg.com/parse5/-/parse5-7.2.1.tgz#8928f55915e6125f430cc44309765bf17556a33a"
   integrity sha512-BuBYQYlv1ckiPdQi/ohiivi9Sagc9JG+Ozs0r7b/0iK3sKmrb0b9FdWdBbOdx6hBCM/F9Ir82ofnBhtZOjCRPQ==

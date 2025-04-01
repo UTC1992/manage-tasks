@@ -1,10 +1,24 @@
 <mat-card class="login-form-container">
-  <mat-card-content>
-    <p>
-      <mat-form-field>
-        <input matInput />
-      </mat-form-field>
-    </p>
-    <button mat-raised-button>Ingresar</button>
-  </mat-card-content>
+  <form>
+    <mat-card-content>
+      <div class="login-form-container__image"></div>
+      <p>
+        <mat-form-field
+          class="login-form-container__input"
+          appearance="outline"
+        >
+          <mat-label>Email</mat-label>
+          <input matInput />
+          <mat-icon matSuffix>email</mat-icon>
+        </mat-form-field>
+      </p>
+      <button
+        mat-flat-button
+        type="submit"
+        class="login-form-container__button"
+      >
+        Ingresar
+      </button>
+    </mat-card-content>
+  </form>
 </mat-card>
