@@ -1,0 +1,33 @@
+.task-item-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 0.5rem;
+  padding: 1rem;
+}
+
+.task-item-container__actions {
+  display: flex;
+  flex-direction: column;
+  column-gap: 0.5rem;
+}
+
+.task-item-container__info {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.1rem;
+}
+
+.task-item-container__title {
+  font-weight: 500;
+  font-size: medium;
+}
+
+.task-item-container__description {
+  font-size: small;
+}
+
+.task-item-container__body {
+  font-size: small;
+}
