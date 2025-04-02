@@ -14,6 +14,7 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { getGap, GapState } from './styles';
 import { CommonModule } from '@angular/common';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 interface DialogData {
   id: number;
@@ -34,6 +35,7 @@ interface DialogData {
     MatDatepickerModule,
     ReactiveFormsModule,
     CommonModule,
+    MatCheckboxModule,
   ],
   providers: [provideNativeDateAdapter()],
   templateUrl: './task-form.component.html',
