@@ -148,4 +148,8 @@ export class TaskHomeComponent {
   refresh(): void {
     this.refresh$.next();
   }
+
+  onLogout(): void {
+    // TODO: implement logout
+  }
 }

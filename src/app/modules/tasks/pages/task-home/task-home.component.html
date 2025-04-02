@@ -1,8 +1,13 @@
-<div class="task-home-container">
-  <p class="task-home-container__title">Tasks list</p>
+<div class="task-home__container">
+  <div class="task-home__header">
+    <p class="task-home__title">Tasks list</p>
+    <button mat-icon-button matTooltip="Close session" (click)="onLogout()">
+      <mat-icon>logout</mat-icon>
+    </button>
+  </div>
   <app-task-list [tasks]="tareas$"></app-task-list>
   <button
-    class="task-home-container__fab-button"
+    class="task-home__fab-button"
     mat-fab
     matTooltip="Add new task"
     (click)="onOpenDialog()"

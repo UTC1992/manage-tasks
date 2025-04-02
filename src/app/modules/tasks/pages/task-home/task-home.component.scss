@@ -1,17 +1,25 @@
-.task-home-container {
-  display: flex;
-  flex-direction: column;
-  row-gap: 1rem;
-  padding: 1rem;
-}
+.task-home {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+    padding: 1rem;
+  }
 
-.task-home-container__fab-button {
-  position: fixed;
-  bottom: 1rem;
-  right: 1rem;
-}
+  &__fab-button {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+  }
 
-.task-home-container__title {
-  font-size: xx-large;
-  font-weight: 500;
+  &__title {
+    font-size: xx-large;
+    font-weight: 500;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
