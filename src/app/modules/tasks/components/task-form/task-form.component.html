@@ -1,12 +1,47 @@
-<h2 mat-dialog-title>Hi</h2>
-<mat-dialog-content>
-  <p>What's your favorite animal?</p>
-  <mat-form-field>
-    <mat-label>Favorite Animal</mat-label>
-    <input matInput />
+<h2 mat-dialog-title>Add new task</h2>
+<mat-dialog-content
+  class="task-form__container"
+  style="margin-top: 1rem"
+  [formGroup]="form"
+>
+  <mat-form-field
+    appearance="outline"
+    [style.marginBottom]="getGap(isTitleRequiredError)"
+  >
+    <mat-label>Title</mat-label>
+    <input matInput formControlName="title" required />
+    <mat-error *ngIf="isTitleRequiredError"> Title is required. </mat-error>
+  </mat-form-field>
+
+  <mat-form-field
+    appearance="outline"
+    [style.marginBottom]="getGap(isDescriptionRequiredError)"
+  >
+    <mat-label>Description</mat-label>
+    <textarea matInput formControlName="description" required></textarea>
+    <mat-error *ngIf="isDescriptionRequiredError">
+      Description is required.
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field
+    appearance="outline"
+    [style.marginBottom]="getGap(isCreatedAtRequiredError)"
+  >
+    <mat-label>Creation date</mat-label>
+    <input
+      matInput
+      [matDatepicker]="picker"
+      formControlName="createdAt"
+      required
+    />
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+    <mat-error *ngIf="isCreatedAtRequiredError">
+      Creation date is required.
+    </mat-error>
   </mat-form-field>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button (click)="onNoClick()" cdkFocusInitial>Ok</button>
+  <button mat-button (click)="onClose()">Cancel</button>
+  <button mat-button (click)="onSubmit()" cdkFocusInitial>Save</button>
 </mat-dialog-actions>

@@ -1,0 +1,16 @@
+.task-form {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-top: 1rem;
+  }
+
+  &__error {
+    color: rgb(188, 53, 53);
+    font-size: small;
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+
+}

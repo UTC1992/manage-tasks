@@ -21,7 +21,6 @@ import { TaskFormComponent } from '@app/modules/tasks/components/task-form/task-
   ],
   templateUrl: './task-home.component.html',
   styleUrl: './task-home.component.scss',
-  standalone: true,
 })
 export class TaskHomeComponent {
   constructor(private readonly dialog: MatDialog) {}
@@ -31,6 +30,7 @@ export class TaskHomeComponent {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.data = { id: 123, name: 'Angular' };
+    dialogConfig.width = '400px';
     const dialogRef = this.dialog.open(TaskFormComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe((result) => {
