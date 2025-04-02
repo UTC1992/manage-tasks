@@ -5,7 +5,7 @@ import { ApplicationConfig } from '@angular/core';
 export const routes: Routes = [
   {
     path: 'tasks',
-    // canActivate: [authGuard],
+    canActivate: [authGuard],
     loadChildren: () =>
       import('./modules/tasks/tasks.module').then((m) => m.TasksModule),
   },
