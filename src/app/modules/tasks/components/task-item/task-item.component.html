@@ -2,18 +2,18 @@
   <mat-card>
     <mat-card-content class="task-item-container">
       <div class="task-item-container__info">
-        <p class="task-item-container__title">{{ title }}</p>
-        <p class="task-item-container__description">{{ description }}</p>
+        <p class="task-item-container__title">{{ task.title }}</p>
+        <p class="task-item-container__description">{{ task.description }}</p>
         <p class="task-item-container__body">
-          {{ completed ? "Completed" : "Pending" }}
+          {{ task.completed ? "Completed" : "Pending" }}
         </p>
-        <p class="task-item-container__body">{{ createdAt }}</p>
+        <p class="task-item-container__body">{{ task.createdAt }}</p>
       </div>
       <div class="task-item-container__actions">
-        <button mat-icon-button>
+        <button mat-icon-button (click)="onEdit()">
           <mat-icon matTooltip="Edit task">edit_square</mat-icon>
         </button>
-        <button mat-icon-button>
+        <button mat-icon-button (click)="onDelete()">
           <mat-icon matTooltip="Delete task">delete</mat-icon>
         </button>
       </div>

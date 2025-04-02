@@ -15,14 +15,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { getGap, GapState } from './styles';
 import { CommonModule } from '@angular/common';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-
-interface DialogData {
-  id: number;
-  title: string;
-  description: string;
-  completed: boolean;
-  createdAt: string;
-}
+import { Task } from '../../model/task.model';
 
 @Component({
   selector: 'app-task-form',
@@ -43,7 +36,7 @@ interface DialogData {
 })
 export class TaskFormComponent {
   dialogRef = inject(MatDialogRef<TaskFormComponent>);
-  readonly data = inject<DialogData>(MAT_DIALOG_DATA);
+  readonly data = inject<Task>(MAT_DIALOG_DATA);
   readonly fb = inject(FormBuilder);
 
   readonly getGap = getGap;
@@ -52,8 +45,14 @@ export class TaskFormComponent {
     title: ['', Validators.required],
     description: ['', Validators.required],
     completed: [false],
-    createdAt: [new Date()],
+    createdAt: [new Date().toDateString()],
   });
+
+  ngOnInit(): void {
+    if (this.data) {
+      this.form.patchValue(this.data);
+    }
+  }
 
   onClose(): void {
     this.dialogRef.close();
