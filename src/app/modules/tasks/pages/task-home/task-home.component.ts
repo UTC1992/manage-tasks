@@ -63,6 +63,18 @@ export class TaskHomeComponent {
         }
       })
     );
+
+    this.subscription.add(
+      this.taskStore.taskToDelete$.subscribe((task) => {
+        if (task?.id) {
+          const confirmDelete = confirm(`¿Eliminar tarea "${task.title}"?`);
+          if (confirmDelete) {
+            this.deleteTask(task.id);
+          }
+          this.taskStore.clearDelete();
+        }
+      })
+    );
   }
 
   ngOnDestroy(): void {
@@ -83,11 +95,9 @@ export class TaskHomeComponent {
           return;
         }
 
-        if (task) {
-          this.updateTask({ ...result, id: task.id });
-        } else {
-          this.createTask(result);
-        }
+        task?.id
+          ? this.updateTask({ ...result, id: task.id })
+          : this.createTask(result);
       },
       error: (error) => {
         console.error('Error al cerrar el diálogo:', error);
@@ -118,6 +128,19 @@ export class TaskHomeComponent {
       error: (error) => {
         console.error('Error al actualizar la tarea:', error);
         this.notify.error('Error al actualizar la tarea ❌');
+      },
+    });
+  }
+
+  deleteTask(taskId: number): void {
+    this.taskService.deleteTask(taskId).subscribe({
+      next: () => {
+        this.refresh();
+        this.notify.success('Tarea eliminada exitosamente ✅');
+      },
+      error: (error) => {
+        console.error('Error al eliminar la tarea:', error);
+        this.notify.error('Error al eliminar la tarea ❌');
       },
     });
   }

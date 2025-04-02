@@ -29,6 +29,6 @@ export class TaskItemComponent {
   }
 
   onDelete(): void {
-    console.log('Delete task');
+    this.taskStore.confirmDelete(this.task);
   }
 }
