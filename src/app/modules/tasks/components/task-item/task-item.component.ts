@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -6,6 +6,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { TaskStoreService } from '../../services/task-store.service';
 import { Task } from '../../model/task.model';
+import { MatChipsModule } from '@angular/material/chips';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-task-item',
@@ -15,6 +17,8 @@ import { Task } from '../../model/task.model';
     MatIconModule,
     MatListModule,
     MatTooltipModule,
+    MatChipsModule,
+    CommonModule,
   ],
   templateUrl: './task-item.component.html',
   styleUrls: ['./task-item.component.scss'],

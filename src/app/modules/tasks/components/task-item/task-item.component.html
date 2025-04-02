@@ -1,15 +1,24 @@
 <mat-list-item>
   <mat-card>
-    <mat-card-content class="task-item-container">
-      <div class="task-item-container__info">
-        <p class="task-item-container__title">{{ task.title }}</p>
-        <p class="task-item-container__description">{{ task.description }}</p>
-        <p class="task-item-container__body">
-          {{ task.completed ? "Completed" : "Pending" }}
+    <mat-card-content class="task-item__container">
+      <div class="task-item__info">
+        <p class="task-item__title">{{ task.title }}</p>
+        <p class="task-item__description">{{ task.description }}</p>
+
+        <mat-chip aria-label="Fruit selection" class="task-item__chip">
+          <span class="task-item__completed">
+            {{ task.completed ? "Completed" : "Pending" }}
+            <mat-icon>
+              {{ task.completed ? "check_circle" : "pending" }}
+            </mat-icon>
+          </span>
+        </mat-chip>
+
+        <p class="task-item__body">
+          {{ task.createdAt | date : "dd/MM/yyyy" }}
         </p>
-        <p class="task-item-container__body">{{ task.createdAt }}</p>
       </div>
-      <div class="task-item-container__actions">
+      <div class="task-item__actions">
         <button mat-icon-button (click)="onEdit()">
           <mat-icon matTooltip="Edit task">edit_square</mat-icon>
         </button>
