@@ -9,9 +9,17 @@ import {
   MatDialogModule,
 } from '@angular/material/dialog';
 import { TaskFormComponent } from '@app/modules/tasks/components/task-form/task-form.component';
-import { Observable, startWith, Subject, switchMap } from 'rxjs';
+import {
+  catchError,
+  Observable,
+  of,
+  startWith,
+  Subject,
+  switchMap,
+} from 'rxjs';
 import { Task } from '../../model/task.model';
 import { TaskService } from '../../services/task.service';
+import { NotifyService } from '@app/shared/services/notify.service';
 
 @Component({
   selector: 'app-task-home',
@@ -31,11 +39,16 @@ export class TaskHomeComponent {
 
   constructor(
     private readonly dialog: MatDialog,
-    private readonly taskService: TaskService
+    private readonly taskService: TaskService,
+    private readonly notify: NotifyService
   ) {
     this.tareas$ = this.refresh$.pipe(
-      startWith(null),
-      switchMap(() => this.taskService.getTasks())
+      startWith(undefined),
+      switchMap(() => this.taskService.getTasks()),
+      catchError((error) => {
+        console.error('Error al cargar las tareas:', error);
+        return of([]);
+      })
     );
   }
 
@@ -46,19 +59,29 @@ export class TaskHomeComponent {
     dialogConfig.width = '400px';
     const dialogRef = this.dialog.open(TaskFormComponent, dialogConfig);
 
-    dialogRef.afterClosed().subscribe((result: Task | undefined) => {
-      console.log('The dialog was closed');
-
-      if (result !== undefined) {
-        console.log('data', result);
-        this.createTask(result);
-      }
+    dialogRef.afterClosed().subscribe({
+      next: (result: Task | undefined) => {
+        if (result !== undefined) {
+          this.createTask(result);
+        }
+      },
+      error: (error) => {
+        console.error('Error al cerrar el diálogo:', error);
+        this.notify.error('Error al cerrar el diálogo ❌');
+      },
     });
   }
 
   createTask(task: Task): void {
-    this.taskService.createTask(task).subscribe(() => {
-      this.refresh();
+    this.taskService.createTask(task).subscribe({
+      next: () => {
+        this.refresh();
+        this.notify.success('Tarea creada exitosamente ✅');
+      },
+      error: (error) => {
+        console.error('Error al crear la tarea:', error);
+        this.notify.error('Error al crear la tarea ❌');
+      },
     });
   }
 
