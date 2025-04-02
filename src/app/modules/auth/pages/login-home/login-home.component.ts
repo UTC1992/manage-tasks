@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { NotifyService } from '@app/shared/services/notify.service';
 import { LoginForm } from '../../types/login';
 import { UserService } from '../../services/user.service';
+import { TokenService } from '@app/core/services/token.service';
 
 @Component({
   selector: 'app-login-home',
@@ -18,11 +19,17 @@ export class LoginHomeComponent {
   readonly router = inject(Router);
   readonly notify = inject(NotifyService);
   readonly userService = inject(UserService);
+  readonly tokenService = inject(TokenService);
 
   onSubmit(value: LoginForm): void {
+    this.onLogin(value);
+  }
+
+  onLogin(value: LoginForm): void {
     this.authService.login(value).subscribe({
       next: (res) => {
         console.log('Login exitoso', res);
+        this.tokenService.setToken(res.token);
         this.router.navigate(['/tasks']);
       },
       error: (err) => {
@@ -36,12 +43,11 @@ export class LoginHomeComponent {
       },
     });
   }
-
   createUser(value: LoginForm): void {
     this.userService.createUser(value).subscribe({
       next: (res) => {
         console.log('Usuario creado exitosamente', res);
-        this.router.navigate(['/tasks']);
+        this.onLogin(value);
       },
       error: (err) => {
         console.error('Error al crear usuario', err);

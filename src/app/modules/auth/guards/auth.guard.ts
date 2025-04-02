@@ -4,17 +4,15 @@ import {
   CanActivateFn,
   RouterStateSnapshot,
 } from '@angular/router';
-import { LoginService } from '../services/login.service';
+import { TokenService } from '@app/core/services/token.service';
 
 export const authGuard: CanActivateFn = (
   route: ActivatedRouteSnapshot,
   state: RouterStateSnapshot
 ) => {
-  const loginService = inject(LoginService);
+  const tokenService = inject(TokenService);
 
-  if (!loginService.isLoggedIn()) {
-    // loginService.login();
-
+  if (!tokenService.isLoggedIn()) {
     return false;
   }
 

@@ -22,6 +22,8 @@ import { Task } from '../../model/task.model';
 import { TaskService } from '../../services/task.service';
 import { NotifyService } from '@app/shared/services/notify.service';
 import { TaskStoreService } from '../../services/task-store.service';
+import { TokenService } from '@app/core/services/token.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-task-home',
@@ -40,9 +42,10 @@ export class TaskHomeComponent {
   private readonly taskService = inject(TaskService);
   private readonly notify = inject(NotifyService);
   private readonly taskStore = inject(TaskStoreService);
-
   private readonly refresh$ = new Subject<void>();
   private readonly subscription = new Subscription();
+  private readonly tokenService = inject(TokenService);
+  private readonly router = inject(Router);
 
   tareas$: Observable<Task[]> = this.refresh$.pipe(
     startWith(undefined),
@@ -150,6 +153,7 @@ export class TaskHomeComponent {
   }
 
   onLogout(): void {
-    // TODO: implement logout
+    this.tokenService.clearToken();
+    this.router.navigate(['/login']);
   }
 }
