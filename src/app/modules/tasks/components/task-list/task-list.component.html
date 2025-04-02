@@ -1,6 +1,6 @@
 <div class="task-list-container">
   <app-task-item
-    *ngFor="let task of tasks"
+    *ngFor="let task of tasks | async"
     [title]="task.title"
     [description]="task.description"
     [completed]="task.completed"

@@ -9,6 +9,9 @@ import {
   MatDialogModule,
 } from '@angular/material/dialog';
 import { TaskFormComponent } from '@app/modules/tasks/components/task-form/task-form.component';
+import { Observable } from 'rxjs';
+import { Task } from '../../model/task.model';
+import { TaskService } from '../../services/task.service';
 
 @Component({
   selector: 'app-task-home',
@@ -23,11 +26,17 @@ import { TaskFormComponent } from '@app/modules/tasks/components/task-form/task-
   styleUrl: './task-home.component.scss',
 })
 export class TaskHomeComponent {
-  constructor(private readonly dialog: MatDialog) {}
+  tareas$: Observable<Task[]>;
+
+  constructor(
+    private readonly dialog: MatDialog,
+    private readonly taskService: TaskService
+  ) {
+    this.tareas$ = this.taskService.getTasks();
+  }
 
   openDialog(): void {
     const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.data = { id: 123, name: 'Angular' };
     dialogConfig.width = '400px';
