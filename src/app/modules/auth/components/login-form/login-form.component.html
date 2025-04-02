@@ -1,23 +1,14 @@
-<mat-card class="login-form-container">
-  <form>
-    <mat-card-content>
-      <div class="login-form-container__image"></div>
-      <p>
-        <mat-form-field
-          class="login-form-container__input"
-          appearance="outline"
-        >
-          <mat-label>Email</mat-label>
-          <input matInput />
-          <mat-icon matSuffix>email</mat-icon>
-        </mat-form-field>
-      </p>
-      <button
-        mat-flat-button
-        type="submit"
-        class="login-form-container__button"
-      >
-        Ingresar
+<mat-card class="login-form__container">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-card-content class="login-form__container-body">
+      <div class="login-form__image"></div>
+      <mat-form-field class="login-form__input" appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" />
+        <mat-icon matSuffix>email</mat-icon>
+      </mat-form-field>
+      <button mat-flat-button type="submit" class="login-form__button">
+        Sign in
       </button>
     </mat-card-content>
   </form>
