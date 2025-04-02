@@ -28,13 +28,17 @@ export class TaskHomeComponent {
 
   openDialog(): void {
     const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = { id: 123, name: 'Angular' };
+    const dialogRef = this.dialog.open(TaskFormComponent, dialogConfig);
 
-    // Configure the dialog options
-    dialogConfig.disableClose = true; // Prevents closing the dialog by clicking outside
-    dialogConfig.autoFocus = false; // Disable autofocus to manually control focus
-    dialogConfig.width = '80%'; // Set the width of the dialog
-    dialogConfig.data = { id: 123, name: 'Angular' }; // Pass data to the dialog component
-    dialogConfig.autoFocus = 'input[name="testName"]'; //Pass autoFoucs field
-    this.dialog.open(TaskFormComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('The dialog was closed');
+
+      if (result !== undefined) {
+        console.log('data', result);
+      }
+    });
   }
 }
