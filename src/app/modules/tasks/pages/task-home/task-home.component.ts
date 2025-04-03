@@ -10,7 +10,10 @@ import {
 } from '@angular/material/dialog';
 import { TaskFormComponent } from '@app/modules/tasks/components/task-form/task-form.component';
 import {
+  BehaviorSubject,
   catchError,
+  combineLatest,
+  map,
   Observable,
   of,
   startWith,
@@ -24,6 +27,8 @@ import { NotifyService } from '@app/shared/services/notify.service';
 import { TaskStoreService } from '../../services/task-store.service';
 import { TokenService } from '@app/core/services/token.service';
 import { Router } from '@angular/router';
+import { sortByCreatedAtDesc } from '../../utils/sortByCreatedAtDesc';
+import { sortByCreatedAtAsc } from '../../utils/sortByCreatedAtAsc';
 
 @Component({
   selector: 'app-task-home',
@@ -46,10 +51,15 @@ export class TaskHomeComponent {
   private readonly subscription = new Subscription();
   private readonly tokenService = inject(TokenService);
   private readonly router = inject(Router);
+  isOrderDesc = true;
+  private readonly order$ = new BehaviorSubject<true | false>(this.isOrderDesc);
 
-  tareas$: Observable<Task[]> = this.refresh$.pipe(
-    startWith(undefined),
+  tareas$: Observable<Task[]> = combineLatest([
+    this.refresh$.pipe(startWith(undefined)),
+    this.order$,
+  ]).pipe(
     switchMap(() => this.taskService.getTasks()),
+    map((tasks) => this.orderTasks(tasks)),
     catchError((error) => {
       console.error('Error al cargar las tareas:', error);
       this.notify.error('Error al cargar las tareas');
@@ -82,6 +92,17 @@ export class TaskHomeComponent {
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
+  }
+
+  orderTasks(tasks: Task[]): Task[] {
+    return this.isOrderDesc
+      ? sortByCreatedAtDesc(tasks)
+      : sortByCreatedAtAsc(tasks);
+  }
+
+  onChangeOrder() {
+    this.isOrderDesc = !this.isOrderDesc;
+    this.order$.next(this.isOrderDesc);
   }
 
   onOpenDialog(task?: Task): void {
