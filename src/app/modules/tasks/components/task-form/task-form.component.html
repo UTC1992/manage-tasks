@@ -1,11 +1,8 @@
 <h2 mat-dialog-title>Tarea</h2>
-<mat-dialog-content
-  class="task-form__container"
-  style="margin-top: 1rem"
-  [formGroup]="form"
->
+<mat-dialog-content class="task-form__container" [formGroup]="form">
   <mat-form-field
     appearance="outline"
+    class="task-form--padding-top"
     [style.marginBottom]="getGap(isTitleRequiredError)"
   >
     <mat-label>Titulo</mat-label>
