@@ -4,7 +4,7 @@ import { MatCardModule } from '@angular/material/card';
 import { TaskItemComponent } from '@app/modules/tasks/components/task-item/task-item.component';
 import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs/internal/Observable';
-import { of } from 'rxjs';
+import { map, of } from 'rxjs';
 import { Task } from '../../model/task.model';
 
 @Component({
@@ -17,6 +17,10 @@ export class TaskListComponent {
   @Input() tasks: Observable<Task[]> = of([]);
 
   @Output() completedTask = new EventEmitter<Task>();
+
+  isEmpty$: Observable<boolean> = this.tasks.pipe(
+    map((tasks) => tasks.length === 0)
+  );
 
   onCompletedTask(task: Task): void {
     this.completedTask.emit(task);

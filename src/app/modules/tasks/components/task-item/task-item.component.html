@@ -3,19 +3,24 @@
     <mat-card-content class="task-item__container">
       <div class="task-item__info">
         <p class="task-item__title">{{ task.title }}</p>
-        <p class="task-item__description">{{ task.description }}</p>
+        <p class="task-item__description">
+          Descripción: {{ task.description }}
+        </p>
 
-        <mat-chip aria-label="Fruit selection" class="task-item__chip">
-          <span class="task-item__completed">
-            {{ task.completed ? "Completo" : "Pendiente" }}
-            <mat-icon>
-              {{ task.completed ? "check_circle" : "pending" }}
-            </mat-icon>
-          </span>
-        </mat-chip>
+        <p class="task-item__description">
+          Estado:
+          <mat-chip aria-label="Fruit selection" class="task-item__chip">
+            <span class="task-item__completed">
+              {{ task.completed ? "Completo" : "Pendiente" }}
+              <mat-icon>
+                {{ task.completed ? "check_circle" : "pending" }}
+              </mat-icon>
+            </span>
+          </mat-chip>
+        </p>
 
         <p class="task-item__body">
-          {{ task.createdAt | date : "dd/MM/yyyy" }}
+          Fecha de creación: {{ task.createdAt | date : "dd/MM/yyyy" }}
         </p>
       </div>
       <div class="task-item__actions">

@@ -12,7 +12,6 @@ import {
   MatCheckboxChange,
   MatCheckboxModule,
 } from '@angular/material/checkbox';
-import { NotifyService } from '@app/shared/services/notify.service';
 
 @Component({
   selector: 'app-task-item',
@@ -30,11 +29,9 @@ import { NotifyService } from '@app/shared/services/notify.service';
   styleUrls: ['./task-item.component.scss'],
 })
 export class TaskItemComponent {
-  @Input() task: Task = {} as Task;
+  @Input() task!: Task;
 
   @Output() completedTask = new EventEmitter<Task>();
-
-  private readonly notify = inject(NotifyService);
 
   private readonly taskStore = inject(TaskStoreService);
 

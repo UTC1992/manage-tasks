@@ -48,6 +48,7 @@
     justify-content: space-between;
     column-gap: 0.5rem;
     width: 100%;
+
   }
 
   &__chip {
@@ -55,5 +56,17 @@
     padding: 0%;
     margin: 0%;
     max-width: min-content;
+
+    &--finished {
+      background-color: rgb(79, 136, 79);
+      color: white;
+    }
+
+    &--pending {
+      background-color: rgb(180, 72, 72);
+      color: white;
+    }
   }
+
+
 }
