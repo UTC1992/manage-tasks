@@ -1,4 +1,4 @@
-<h2 mat-dialog-title>Add new task</h2>
+<h2 mat-dialog-title>Tarea</h2>
 <mat-dialog-content
   class="task-form__container"
   style="margin-top: 1rem"
@@ -8,26 +8,26 @@
     appearance="outline"
     [style.marginBottom]="getGap(isTitleRequiredError)"
   >
-    <mat-label>Title</mat-label>
+    <mat-label>Titulo</mat-label>
     <input matInput formControlName="title" required />
-    <mat-error *ngIf="isTitleRequiredError"> Title is required. </mat-error>
+    <mat-error *ngIf="isTitleRequiredError"> Titulo es requerido. </mat-error>
   </mat-form-field>
 
   <mat-form-field
     appearance="outline"
     [style.marginBottom]="getGap(isDescriptionRequiredError)"
   >
-    <mat-label>Description</mat-label>
+    <mat-label>Descripción</mat-label>
     <textarea matInput formControlName="description" required></textarea>
     <mat-error *ngIf="isDescriptionRequiredError">
-      Description is required.
+      Descripción es requerida.
     </mat-error>
   </mat-form-field>
   <mat-form-field
     appearance="outline"
     [style.marginBottom]="getGap(isCreatedAtRequiredError)"
   >
-    <mat-label>Creation date</mat-label>
+    <mat-label>Fecha de creación</mat-label>
     <input
       matInput
       [matDatepicker]="picker"
@@ -37,14 +37,14 @@
     <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
     <mat-error *ngIf="isCreatedAtRequiredError">
-      Creation date is required.
+      Fecha de creación es requerida.
     </mat-error>
   </mat-form-field>
   <mat-checkbox formControlName="completed">
-    <mat-label>Completed</mat-label>
+    <mat-label>Completado</mat-label>
   </mat-checkbox>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <button mat-button (click)="onClose()">Cancel</button>
-  <button mat-button (click)="onSubmit()" cdkFocusInitial>Save</button>
+  <button mat-button (click)="onClose()">Cancelar</button>
+  <button mat-button (click)="onSubmit()" cdkFocusInitial>Guardar</button>
 </mat-dialog-actions>

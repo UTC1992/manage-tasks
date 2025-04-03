@@ -28,7 +28,6 @@ export class LoginHomeComponent {
   onLogin(value: LoginForm): void {
     this.authService.login(value).subscribe({
       next: (res) => {
-        console.log('Login exitoso', res);
         this.tokenService.setToken(res.token);
         this.router.navigate(['/tasks']);
       },
