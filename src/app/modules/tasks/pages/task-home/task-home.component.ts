@@ -54,7 +54,7 @@ export class TaskHomeComponent {
   isOrderDesc = true;
   private readonly order$ = new BehaviorSubject<true | false>(this.isOrderDesc);
 
-  tareas$: Observable<Task[]> = combineLatest([
+  tasks$: Observable<Task[]> = combineLatest([
     this.refresh$.pipe(startWith(undefined)),
     this.order$,
   ]).pipe(

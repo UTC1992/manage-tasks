@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { TaskItemComponent } from '@app/modules/tasks/components/task-item/task-item.component';
@@ -15,4 +15,10 @@ import { Task } from '../../model/task.model';
 })
 export class TaskListComponent {
   @Input() tasks: Observable<Task[]> = of([]);
+
+  @Output() completedTask = new EventEmitter<Task>();
+
+  onCompletedTask(task: Task): void {
+    this.completedTask.emit(task);
+  }
 }

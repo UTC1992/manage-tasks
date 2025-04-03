@@ -10,7 +10,10 @@
       Orden: {{ isOrderDesc ? "Descendente ⬇️" : "Ascendente ⬆️" }}
     </button>
   </div>
-  <app-task-list [tasks]="tareas$"></app-task-list>
+  <app-task-list
+    [tasks]="tasks$"
+    (completedTask)="updateTask($event)"
+  ></app-task-list>
   <button
     class="task-home__fab-button"
     mat-fab

@@ -7,7 +7,7 @@
 
         <mat-chip aria-label="Fruit selection" class="task-item__chip">
           <span class="task-item__completed">
-            {{ task.completed ? "Completed" : "Pending" }}
+            {{ task.completed ? "Completo" : "Pendiente" }}
             <mat-icon>
               {{ task.completed ? "check_circle" : "pending" }}
             </mat-icon>
@@ -20,11 +20,17 @@
       </div>
       <div class="task-item__actions">
         <button mat-icon-button (click)="onEdit()">
-          <mat-icon matTooltip="Edit task">edit_square</mat-icon>
+          <mat-icon matTooltip="Editar tarea">edit_square</mat-icon>
         </button>
         <button mat-icon-button (click)="onDelete()">
-          <mat-icon matTooltip="Delete task">delete</mat-icon>
+          <mat-icon matTooltip="Eliminar tarea">delete</mat-icon>
         </button>
+        <div class="task-home__checkbox">
+          <mat-checkbox
+            (change)="onChangeCompleted($event)"
+            [checked]="task.completed"
+          ></mat-checkbox>
+        </div>
       </div>
     </mat-card-content>
   </mat-card>
